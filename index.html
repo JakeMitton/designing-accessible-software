@@ -1,373 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Designing Accessible Software — Jake Mitton</title>
-  <style>
-    /* Reset and base */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Designing Accessible Software — Jake Mitton</title>
+	<style>
+		/* Reset and base */
+		*, *::before, *::after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
 
-    /* Skip link — visually hidden until focused */
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 1rem;
-      background: #1a1a1a;
-      color: #FAF8F5;
-      padding: 0.75rem 1.25rem;
-      border-radius: 0 0 6px 6px;
-      font-family: Arial, sans-serif;
-      font-size: 1rem;
-      text-decoration: none;
-      z-index: 100;
-    }
+		/* Skip link — visually hidden until focused */
+		.skip-link {
+			position: absolute;
+			top: -100%;
+			left: 1rem;
+			background: #1a1a1a;
+			color: #FAF8F5;
+			padding: 0.75rem 1.25rem;
+			border-radius: 0 0 6px 6px;
+			font-family: Arial, sans-serif;
+			font-size: 1rem;
+			text-decoration: none;
+			z-index: 100;
+		}
 
-    .skip-link:focus {
-      top: 0;
-    }
+		.skip-link:focus {
+			top: 0;
+		}
 
-    body {
-      font-family: Georgia, serif;
-      background: #FAF8F5;
-      color: #1a1a1a;
-      line-height: 1.7;
-    }
+		body {
+			font-family: Georgia, serif;
+			background: #FAF8F5;
+			color: #1a1a1a;
+			line-height: 1.7;
+		}
 
-    /* Header */
-    header {
-      background: #1a1a1a;
-      padding: 2rem;
-      text-align: center;
-    }
+		/* Header */
+		header {
+			background: #1a1a1a;
+			padding: 2rem;
+			text-align: center;
+		}
 
-    header h1 {
-      font-size: 2rem;
-      color: #FAF8F5;
-      font-weight: normal;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.5rem;
-    }
+		header h1 {
+			font-size: 2rem;
+			color: #FAF8F5;
+			font-weight: normal;
+			letter-spacing: -0.01em;
+			margin-bottom: 0.5rem;
+		}
 
-    header p {
-      color: #AAAAAA;
-      font-family: Arial, sans-serif;
-      font-size: 0.95rem;
-    }
+		header p {
+			color: #AAAAAA;
+			font-family: Arial, sans-serif;
+			font-size: 0.95rem;
+		}
 
-    /* Nav */
-    nav {
-      background: #2a2a2a;
-      padding: 0 2rem;
-    }
+		/* Nav */
+		nav {
+			background: #2a2a2a;
+			padding: 0 2rem;
+		}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      max-width: 960px;
-      margin: 0 auto;
-    }
+		nav ul {
+			list-style: none;
+			display: flex;
+			justify-content: center;
+			gap: 0;
+			max-width: 960px;
+			margin: 0 auto;
+		}
 
-    nav ul li a {
-      display: block;
-      padding: 1rem 1.5rem;
-      color: #FAF8F5;
-      text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 0.9rem;
-      border-bottom: 3px solid transparent;
-      transition: border-color 0.15s;
-    }
+		nav ul li a {
+			display: block;
+			padding: 1rem 1.5rem;
+			color: #FAF8F5;
+			text-decoration: none;
+			font-family: Arial, sans-serif;
+			font-size: 0.9rem;
+			border-bottom: 3px solid transparent;
+			transition: border-color 0.15s;
+		}
 
-    nav ul li a:hover,
-    nav ul li a:focus {
-      border-bottom-color: #FAF8F5;
-      outline: none;
-    }
+		nav ul li a:hover,
+		nav ul li a:focus {
+			border-bottom-color: #FAF8F5;
+			outline: none;
+		}
 
-    nav ul li a:focus-visible {
-      outline: 3px solid #FAF8F5;
-      outline-offset: -3px;
-    }
+		nav ul li a:focus-visible {
+			outline: 3px solid #FAF8F5;
+			outline-offset: -3px;
+		}
 
-    /* Main content */
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-    }
+		/* Main content */
+		main {
+			max-width: 960px;
+			margin: 0 auto;
+			padding: 3rem 2rem;
+			text-align: center;
+		}
 
-    /* Intro section */
-    .intro {
-      margin-bottom: 3rem;
-      max-width: 680px;
-    }
+		/* Intro section */
+		.intro {
+			margin: 0 auto 3rem auto;
+			width: 100%;
+			text-align: center;
+		}
 
-    .intro h2 {
-      font-size: 1.6rem;
-      font-weight: normal;
-      margin-bottom: 1rem;
-      color: #1a1a1a;
-    }
+		.intro h2 {
+			font-size: 1.6rem;
+			font-weight: normal;
+			margin-bottom: 1rem;
+			color: #1a1a1a;
+			text-align: center;
+		}
 
-    .intro p {
-      font-size: 1rem;
-      color: #333;
-      margin-bottom: 1rem;
-    }
+		.intro p {
+			font-size: 1rem;
+			color: #333;
+			margin-bottom: 1rem;
+			text-align: center;
+		}
 
-    /* Resource cards */
-    .resources {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
+		/* Resource cards */
+		.resources {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 1.5rem;
+			margin-bottom: 3rem;
+		}
 
-    .card {
-      background: #fff;
-      border: 1px solid #E0DDD8;
-      border-radius: 8px;
-      padding: 1.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
+		.card {
+			background: #fff;
+			border: 1px solid #E0DDD8;
+			border-radius: 8px;
+			padding: 1.75rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+		}
 
-    .card-icon {
-      font-size: 1.75rem;
-      line-height: 1;
-      /* Decorative — hidden from screen readers */
-    }
+		.card-icon {
+			font-size: 1.75rem;
+			line-height: 1;
+			/* Decorative — hidden from screen readers */
+		}
 
-    .card h3 {
-      font-size: 1.1rem;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-      color: #1a1a1a;
-    }
+		.card h3 {
+			font-size: 1.1rem;
+			font-weight: bold;
+			font-family: Arial, sans-serif;
+			color: #1a1a1a;
+		}
 
-    .card p {
-      font-size: 0.9rem;
-      color: #555;
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-      flex-grow: 1;
-    }
+		.card p {
+			font-size: 0.9rem;
+			color: #555;
+			font-family: Arial, sans-serif;
+			line-height: 1.5;
+			flex-grow: 1;
+		}
 
-    .card a {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.6rem 1.25rem;
-      background: #1a1a1a;
-      color: #FAF8F5;
-      text-decoration: none;
-      border-radius: 4px;
-      font-family: Arial, sans-serif;
-      font-size: 0.875rem;
-      align-self: flex-start;
-    }
+		.card a {
+			display: inline-block;
+			margin-top: 0.5rem;
+			padding: 0.6rem 1.25rem;
+			height: 3lh;
+			background: #1a1a1a;
+			color: #FAF8F5;
+			text-decoration: none;
+			border-radius: 4px;
+			font-family: Arial, sans-serif;
+			font-size: 0.875rem;
+			align-self: flex-start;
+			text-align: center;
+		}
 
-    .card a:hover {
-      background: #333;
-    }
+		.card a:hover {
+			background: #333;
+		}
 
-    .card a:focus-visible {
-      outline: 3px solid #1a1a1a;
-      outline-offset: 3px;
-    }
+		.card a:focus-visible {
+			outline: 3px solid #1a1a1a;
+			outline-offset: 3px;
+		}
 
-    /* External links section */
-    .links-section h2 {
-      font-size: 1.4rem;
-      font-weight: normal;
-      margin-bottom: 1.25rem;
-      color: #1a1a1a;
-    }
+		/* External links section */
+		.links-section h2 {
+			font-size: 1.4rem;
+			font-weight: normal;
+			margin-bottom: 1.25rem;
+			color: #1a1a1a;
+		}
 
-    .links-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
+		.links-list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+			text-align: left
+		}
 
-    .links-list li {
-      border-left: 3px solid #1a1a1a;
-      padding-left: 1rem;
-    }
+		.links-list li {
+			padding-left: 1rem;
+			text-align: left
+		}
 
-    .links-list li a {
-      font-family: Arial, sans-serif;
-      font-size: 0.95rem;
-      color: #1a1a1a;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
+		.links-list li a {
+			font-family: Arial, sans-serif;
+			font-size: 0.95rem;
+			color: #1a1a1a;
+			text-decoration: underline;
+			text-underline-offset: 3px;
+			text-align: left
+		}
 
-    .links-list li a:hover {
-      color: #444;
-    }
+		.links-list li a:hover {
+			color: #444;
+		}
 
-    .links-list li a:focus-visible {
-      outline: 3px solid #1a1a1a;
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
+		.links-list li a:focus-visible {
+			outline: 3px solid #1a1a1a;
+			outline-offset: 2px;
+			border-radius: 2px;
+		}
 
-    .links-list .link-description {
-      display: block;
-      font-family: Arial, sans-serif;
-      font-size: 0.825rem;
-      color: #666;
-      margin-top: 0.2rem;
-    }
+		.links-list .link-description {
+			display: block;
+			font-family: Arial, sans-serif;
+			font-size: 0.825rem;
+			color: #666;
+			margin-top: 0.2rem;
+			text-align: left
+		}
 
-    /* Footer */
-    footer {
-      background: #1a1a1a;
-      color: #AAAAAA;
-      text-align: center;
-      padding: 1.5rem 2rem;
-      font-family: Arial, sans-serif;
-      font-size: 0.85rem;
-    }
+		/* Footer */
+		footer {
+			background: #1a1a1a;
+			color: #AAAAAA;
+			text-align: center;
+			padding: 1.5rem 2rem;
+			font-family: Arial, sans-serif;
+			font-size: 0.85rem;
+		}
 
-    footer a {
-      color: #FAF8F5;
-    }
+		footer a {
+			color: #FAF8F5;
+		}
 
-    footer a:focus-visible {
-      outline: 3px solid #FAF8F5;
-      outline-offset: 2px;
-    }
+		footer a:focus-visible {
+			outline: 3px solid #FAF8F5;
+			outline-offset: 2px;
+		}
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.4rem;
-      }
+		/* Responsive */
+		@media (max-width: 600px) {
+			header h1 {
+				font-size: 1.4rem;
+			}
 
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+			nav ul {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
 
-      nav ul li a {
-        padding: 0.75rem 1rem;
-        font-size: 0.85rem;
-      }
+			nav ul li a {
+				padding: 0.75rem 1rem;
+				font-size: 0.85rem;
+			}
 
-      main {
-        padding: 2rem 1.25rem;
-      }
-    }
-  </style>
+			main {
+				padding: 2rem 1.25rem;
+			}
+		}
+  	</style>
 </head>
 <body>
 
-  <!-- Skip navigation link for keyboard and screen reader users -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+ 	<!-- Skip navigation link for keyboard and screen reader users -->
+ 	<a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <header>
-    <h1>Designing Accessible Software</h1>
-    <p>An educational resource by Jake Mitton &mdash; CSCI 490, Vancouver Island University</p>
-  </header>
+ 	<header>
+    	<h1>Designing Accessible Software</h1>
+    	<p>An educational resource by Jake Mitton &mdash; CSCI 490, Vancouver Island University</p>
+  	</header>
 
-  <nav aria-label="Site navigation">
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#resources">Resources</a></li>
-      <li><a href="transcript.html">Transcript</a></li>
-      <li><a href="#further-reading">Further Reading</a></li>
-    </ul>
-  </nav>
+  	<nav aria-label="Site navigation">
+    	<ul>
+      		<li><a href="#about">About</a></li>
+      		<li><a href="#resources">Resources</a></li>
+      		<li><a href="transcript.html">Transcript</a></li>
+      		<li><a href="#further-reading">Further Reading</a></li>
+    	</ul>
+  	</nav>
 
   <main id="main-content">
 
     <section aria-labelledby="about-heading" class="intro" id="about">
-      <h2 id="about-heading">About this resource</h2>
-      <p>This site accompanies a video lecture on accessibility in software design, produced as part of a senior research project at Vancouver Island University, supervised by Dr. Sarah Carruthers.</p>
-      <p>The video covers what accessibility means for software developers, the standards that define it, the tools that help you build accessibly, and the practices that go beyond tools. Whether you are here after watching the video or exploring on your own, the resources below are a good place to start.</p>
+      	<h2 id="about-heading">About this resource</h2>
+      	<p>This site accompanies a video lecture on accessibility in software design, produced as part of a senior research project at Vancouver Island University, supervised by Dr. Sarah Carruthers.</p>
+      	<p>The video covers what accessibility means for software developers, the standards that define it, the tools that help you build accessibly, and the practices that go beyond tools. Whether you are here after watching the video or exploring on your own, the resources below are a good place to start.</p>
     </section>
 
     <section aria-labelledby="resources-heading" id="resources">
-      <h2 id="resources-heading" class="visually-hidden">Main resources</h2>
-      <div class="resources">
+      	<h2 id="resources-heading" class="visually-hidden">Main resources</h2>
+      	<div class="resources">
 
-        <article class="card" aria-labelledby="video-heading">
-          <span aria-hidden="true" class="card-icon">▶</span>
-          <h3 id="video-heading">Watch the Video</h3>
-          <p>A full lecture on accessibility in software design, covering the POUR principles, relevant standards, practical tools, and inclusive development practices.</p>
-          <a href="https://www.youtube.com/watch?v=PLACEHOLDER" aria-label="Watch the lecture video on YouTube">Watch on YouTube</a>
-        </article>
+        	<article class="card" aria-labelledby="video-heading">
+				<span aria-hidden="true" class="card-icon">▶</span>
+				<h3 id="video-heading">Watch the Video</h3>
+				<p>A full lecture on accessibility in software design, covering the POUR principles, relevant standards, practical tools, and inclusive development practices.</p>
+				<a href="https://www.youtube.com/watch?v=PLACEHOLDER" aria-label="Watch the lecture video on YouTube">Watch on YouTube</a>
+        	</article>
 
-        <article class="card" aria-labelledby="transcript-heading">
-          <span aria-hidden="true" class="card-icon">📝</span>
-          <h3 id="transcript-heading">Video Transcript</h3>
-          <p>A full text transcript of the video lecture. Useful if you prefer reading, want to search for a specific topic, or are unable to access the video.</p>
-          <a href="transcript.html" aria-label="Read the full video transcript">Read Transcript</a>
-        </article>
+			<article class="card" aria-labelledby="transcript-heading">
+				<span aria-hidden="true" class="card-icon">📝</span>
+				<h3 id="transcript-heading">Video Transcript</h3>
+				<p>A full text transcript of the video lecture. Useful if you prefer reading, want to search for a specific topic, or are unable to access the video.</p>
+				<a href="transcript.html" aria-label="Read the full video transcript">Read Transcript</a>
+			</article>
 
-        <article class="card" aria-labelledby="slides-heading">
-          <span aria-hidden="true" class="card-icon">📄</span>
-          <h3 id="slides-heading">Slide Deck</h3>
-          <p>Download the slides from the video lecture as a PDF. Useful for following along or reviewing the material at your own pace.</p>
-          <a href="slides.pdf" aria-label="Download the slide deck as a PDF">Download PDF</a>
-        </article>
+			<article class="card" aria-labelledby="slides-heading">
+				<span aria-hidden="true" class="card-icon">📄</span>
+				<h3 id="slides-heading">Slide Deck</h3>
+				<p>Download the slides from the video lecture as a PDF. Useful for following along or reviewing the material at your own pace.</p>
+				<a href="slides.pdf" aria-label="Download the slide deck as a PDF">Download PDF</a>
+			</article>
 
-        <article class="card" aria-labelledby="demo-heading">
-          <span aria-hidden="true" class="card-icon">🔍</span>
-          <h3 id="demo-heading">Lighthouse Demo Page</h3>
-          <p>An example webpage with deliberate accessibility issues, used in the video to demonstrate Google Lighthouse. Try running the audit yourself.</p>
-          <a href="demo.html" aria-label="Open the Lighthouse demo page">Open Demo Page</a>
-        </article>
-
-      </div>
+			<article class="card" aria-labelledby="demo-heading">
+				<span aria-hidden="true" class="card-icon">🔍</span>
+				<h3 id="demo-heading">Lighthouse Demo Page</h3>
+				<p>An example webpage with deliberate accessibility issues, used in the video to demonstrate Google Lighthouse. Try running the audit yourself.</p>
+				<a href="demo.html" aria-label="Open the Lighthouse demo page">Open Demo Page</a>
+			</article>
+     	</div>
     </section>
 
     <section aria-labelledby="further-reading-heading" id="further-reading" class="links-section">
-      <h2 id="further-reading-heading">Further Reading</h2>
-      <ul class="links-list">
-        <li>
-          <a href="https://www.w3.org/WAI/WCAG22/quickref/?versions=2.1" target="_blank" rel="noopener noreferrer">WCAG 2.1 Quick Reference <span class="visually-hidden">(opens in new tab)</span></a>
-          <span class="link-description">Filter and browse every WCAG 2.1 success criterion by principle and conformance level.</span>
-        </li>
-        <li>
-          <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility" target="_blank" rel="noopener noreferrer">MDN Accessibility Documentation <span class="visually-hidden">(opens in new tab)</span></a>
-          <span class="link-description">Mozilla's comprehensive guide to building accessible web content, including HTML semantics and ARIA.</span>
-        </li>
-        <li>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA" target="_blank" rel="noopener noreferrer">MDN ARIA Reference <span class="visually-hidden">(opens in new tab)</span></a>
-          <span class="link-description">Complete reference for ARIA roles, properties, and states with usage guidance and examples.</span>
-        </li>
-        <li>
-          <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener noreferrer">WebAIM Contrast Checker <span class="visually-hidden">(opens in new tab)</span></a>
-          <span class="link-description">Check the contrast ratio between any two colours against WCAG AA and AAA requirements.</span>
-        </li>
-        <li>
-          <a href="https://who.int/news-room/fact-sheets/detail/disability-and-health" target="_blank" rel="noopener noreferrer">WHO Disability Fact Sheet <span class="visually-hidden">(opens in new tab)</span></a>
-          <span class="link-description">World Health Organization statistics and information on disability and health worldwide.</span>
-        </li>
-        <li>
-          <a href="https://www.policylink.org/resources/commentary/curb-cut-effect" target="_blank" rel="noopener noreferrer">The Curb Cut Effect — PolicyLink <span class="visually-hidden">(opens in new tab)</span></a>
-          <span class="link-description">Angela Glover Blackwell's explanation of how designing for disability benefits everyone.</span>
-        </li>
-      </ul>
+		<h2 id="further-reading-heading">Further Reading</h2>
+		<ul class="links-list">
+			<li>
+				<a href="https://www.w3.org/WAI/WCAG22/quickref/?versions=2.1" target="_blank" rel="noopener noreferrer">WCAG 2.1 Quick Reference <span class="visually-hidden">(opens in new tab)</span></a>
+				<span class="link-description">Filter and browse every WCAG 2.1 success criterion by principle and conformance level.</span>
+			</li>
+			<li>
+				<a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility" target="_blank" rel="noopener noreferrer">MDN Accessibility Documentation <span class="visually-hidden">(opens in new tab)</span></a>
+				<span class="link-description">Mozilla's comprehensive guide to building accessible web content, including HTML semantics and ARIA.</span>
+			</li>
+			<li>
+				<a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA" target="_blank" rel="noopener noreferrer">MDN ARIA Reference <span class="visually-hidden">(opens in new tab)</span></a>
+				<span class="link-description">Complete reference for ARIA roles, properties, and states with usage guidance and examples.</span>
+			</li>
+			<li>
+				<a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener noreferrer">WebAIM Contrast Checker <span class="visually-hidden">(opens in new tab)</span></a>
+				<span class="link-description">Check the contrast ratio between any two colours against WCAG AA and AAA requirements.</span>
+			</li>
+			<li>
+				<a href="https://who.int/news-room/fact-sheets/detail/disability-and-health" target="_blank" rel="noopener noreferrer">WHO Disability Fact Sheet <span class="visually-hidden">(opens in new tab)</span></a>
+				<span class="link-description">World Health Organization statistics and information on disability and health worldwide.</span>
+			</li>
+			<li>
+				<a href="https://www.policylink.org/resources/commentary/curb-cut-effect" target="_blank" rel="noopener noreferrer">The Curb Cut Effect — PolicyLink <span class="visually-hidden">(opens in new tab)</span></a>
+				<span class="link-description">Angela Glover Blackwell's explanation of how designing for disability benefits everyone.</span>
+			</li>
+		</ul>
     </section>
 
-  </main>
+  	</main>
 
-  <footer>
-    <p>Jake Mitton &mdash; CSCI 490 Senior Research Project &mdash; Vancouver Island University, 2026</p>
-    <p>Supervised by Dr. Sarah Carruthers</p>
-  </footer>
+  	<footer>
+		<p>Jake Mitton &mdash; CSCI 490 Senior Research Project &mdash; Vancouver Island University, 2026</p>
+		<p>Supervised by Dr. Sarah Carruthers</p>
+  	</footer>
 
 </body>
 </html>
