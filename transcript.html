@@ -447,9 +447,17 @@
       <p>The first is a contrast checker. These tools let you input two colours, a foreground and a background, and check whether the contrast ratio between them meets WCAG requirements. The standard sets minimum contrast ratios for text, with higher requirements for smaller text. The one I'd recommend starting with is WebAIM's contrast checker, which is also linked on the resource page. It's free, straightforward to use, and tells you exactly which WCAG conformance levels your contrast ratio passes or fails. Many design tools like Figma also have contrast checking built in, but the WebAIM tool is a reliable fallback for checking any combination of colours.</p>
       <p>The second type of tool is a colour filter or colour blindness simulator. These let you view your interface as it would appear to someone with a colour vision deficiency. There are different types of colour blindness, and a good simulator will let you check several of them. This is useful for catching situations where you are accidentally relying on colour alone to convey information, which the Distinguishable criterion under Perceivable specifically flags as a problem.</p>
       <p>The third, and probably the most powerful for a developer, is an automated accessibility checking tool. Google Lighthouse is a great example. It is built right into Chrome's developer tools, and it can audit a live web page for a range of accessibility issues, give you a score, and provide specific recommendations. It is not a complete solution since automated tools can only catch a subset of accessibility issues and there are things that require human judgment. But it is an excellent starting point and a great way to catch obvious issues quickly.</p>
-      <p>The demo page linked on the resource website has a number of deliberate accessibility issues built in — try running Lighthouse on it yourself and see what it finds.</p>
+      <p>Let's take a look at Lighthouse in action.</p>
       <a href="#main-content" class="back-to-top">Back to top</a>
     </section>
+
+    <section class="transcript-section" aria-labelledby="tools-heading" id="tools">
+      <h2 id="tools-heading">Demo</h2>
+      <p>I've spun up a simple web page for this demo. Let me walk you through how to use Lighthouse to audit it.</p>
+      <p>A few things to keep in mind as you look at these results: Lighthouse gives you a score out of 100, but that score is not the whole story. It's testing for things it can automatically detect, like missing alt text, insufficient colour contrast, and missing form labels. There are entire categories of accessibility issues that automated tools can't catch. Things like whether content is logically structured, whether error messages are actually helpful, or whether the overall experience makes sense for someone using a screen reader. That's why automated testing is a starting point, not a finishing line.</p>
+      <a href="#main-content" class="back-to-top">Back to top</a>
+    </section>
+
 
     <section class="transcript-section" aria-labelledby="beyond-tools-heading" id="beyond-tools">
       <h2 id="beyond-tools-heading">Beyond Tools &mdash; Inclusive Development Practices</h2>
